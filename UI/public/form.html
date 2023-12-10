@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Enter Patient Information</h1>
-    <form action="/process_input" method="post" id="predictionForm">
+    <form action="/process_input" method="post">
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" required>
         <br>
@@ -59,38 +59,6 @@
 
         <input type="submit" value="Submit">
     </form>
-
-    <script>
-      document.getElementById('predictionForm').addEventListener('submit', function (event) {
-          event.preventDefault();
-  
-          // Collect form data
-          const formData = new FormData(event.target);
-          const jsonData = {};
-  
-          formData.forEach((value, key) => {
-              jsonData[key] = value;
-          });
-  
-          // Send data to the server
-          fetch('http://127.0.0.1:5000/process_input', {  // Update the URL to match your Flask server address
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(jsonData),
-          })
-          .then(response => response.text())
-          .then(data => {
-              // Redirect to the result page
-              document.open();
-              document.write(data);
-              document.close();
-          })
-          .catch(error => {
-              console.error('Error:', error);
-          });
-      });
-  </script>
+    
 </body>
 </html>
